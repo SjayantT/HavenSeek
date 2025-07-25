@@ -49,8 +49,9 @@
 
 ---
 
-**Developer**
-Name: Sahil Jayant
-email: www.jayantsahil2054@gmail.com
-Linkedin: https://www.linkedin.com/in/sahil-jayant/
+# Developer
+
+**Sahil Jayant**
+📧 www.jayantsahil2054@gmail.com <br>
+🔗 LinkedIn: www.linkedin.com/in/sahil-jayant
 
