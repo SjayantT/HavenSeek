@@ -1,0 +1,78 @@
+<% layout("Layouts/boilerplate") %>
+<body>
+    <br> <br>
+    <section class="d-flex align-items-center justify-content-center" style="min-height:100vh; background: linear-gradient(135deg, #e0e7ff 0%, #f5f6fa 100%);">
+        <div class="card shadow-lg border-0 mt-10" style="max-width:350px; width:100%; border-radius: 2rem;">
+            <div class="card-header text-center bg-white border-0" style="border-top-left-radius:2rem; border-top-right-radius:2rem;">
+            <div class="mb-3"><i class="fa-solid fa-house-chimney fa-2x text-indigo-500"></i></div>
+            <h3 class="fw-bolder mb-1" style="color:#4f46e5;">Create your HavenSeek account</h3>
+            <p class="small text-muted">Join professionals & homeowners on our trusted property platform</p>
+            </div>
+            <div class="card-body px-5 py-4">
+            <form action="/user/signup" class="needs-validation" method="post" novalidate>
+                <!--name -->
+                <div class="mb-3 input-group">
+                <span class="input-group-text bg-white"><i class="fa fa-user text-indigo-600"></i></span>
+                <input type="text" class="form-control" id="signupUsername" name="name" required placeholder="Full name">
+                <div class="invalid-feedback">
+                    Please enter your name!
+                </div>
+                </div>
+                <!-- Username -->
+                <div class="mb-3 input-group">
+                <span class="input-group-text bg-white"><i class="fa fa-user text-indigo-600"></i></span>
+                <input type="text" class="form-control" id="signupUsername" name="username" required placeholder="Username">
+                <div class="invalid-feedback">
+                    Please enter a username!
+                </div>
+                </div>
+                <!-- Email -->
+                <div class="mb-3 input-group">
+                <span class="input-group-text bg-white"><i class="fa fa-envelope text-indigo-600"></i></span>
+                <input type="email" class="form-control" id="signupEmail" name="email" required placeholder="Email address">
+                <div class="invalid-feedback">
+                    Please enter a valid email address!
+                </div>
+                </div>
+                <!-- Mobile Number -->
+                <div class="mb-3 input-group">
+                <span class="input-group-text bg-white"><i class="fa fa-mobile-alt text-indigo-600"></i></span>
+                <input type="tel" class="form-control" id="signupMobile" name="mobile" required pattern="[0-9]{10,14}" placeholder="Mobile number">
+                <div class="invalid-feedback">
+                    Please enter a valid mobile number!
+                </div>
+                </div>
+                <div class="mb-3 input-group">
+                <span class="input-group-text bg-white"><i class="fa-solid fa-address-card text-indigo-600"></i></span>
+                <input type="tel" class="form-control" id="signupaadhar" name="aadhar" required pattern="[0-9]{10,14}" placeholder="Aadhar No.">
+                <div class="invalid-feedback">
+                    Please enter a valid Aadhar Card Number!
+                </div>
+                </div>
+                <!-- Password -->
+                <div class="mb-3 input-group">
+                <span class="input-group-text bg-white"><i class="fa fa-lock text-indigo-600"></i></span>
+                <input type="password" class="form-control" id="signupPassword" name="password" required placeholder="Password">
+                <div class="invalid-feedback">
+                    Please enter a strong password!
+                </div>
+                </div>
+                <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                <label class="form-check-label small" for="agreeTerms">
+                    I agree to the <a href="#" style="color:#4f46e5; text-decoration:underline;">Terms & Conditions</a>
+                </label>
+                <div class="invalid-feedback">
+                    Please accept Terms & Conditions!
+                </div>
+                </div>
+                <button type="submit" class="btn w-100 fw-bold text-white" style="background:#4f46e5;">Sign Up</button>
+            </form>
+            <div class="text-center mt-3">
+                <small>Already registered? <a href="/user/login" class="text-indigo-600">Login</a></small>
+            </div>
+            </div>
+        </div>
+    </section>
+    <br>
+</body>

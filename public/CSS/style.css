@@ -1,0 +1,68 @@
+@keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeInUp { opacity: 0; animation: fadeInUp 1s forwards; }
+    .scroll-hidden::-webkit-scrollbar { display: none; }
+
+    /* Custom CSS */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+
+
+#menu {
+  transition: transform 0.3s ease-in-out;
+}
+
+#menu.show {
+  display: block;
+  transform: translateX(0);
+}
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide ugly horizontal scrollbars from property carousels */
+.scroll-hidden::-webkit-scrollbar {
+  display: none;
+}
+.scroll-hidden {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}
+ .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+  }
+  .scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+   
+
+
+  /* Works on Chrome, Edge, Safari */
+  .custom-scrollbar::-webkit-scrollbar {
+    /* height: 5px; */
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    /* border-radius: 10px; */
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: white;  /* Indigo */
+    /* border-radius: 10px; */
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: white;  /* Darker Indigo */
+  }
+
+  /* Firefox */
+  .custom-scrollbar {
+    scrollbar-color:  #f1f1f1;
+    scrollbar-width:none;
+  }

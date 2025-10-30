@@ -1,0 +1,301 @@
+<% layout("Layouts/boilerplate") %>
+<body>
+  <!-- Include your navbar here -->
+    <!-- Property Hero Section -->
+    <section class="property-hero">
+        <div class="container-fluid p-0">
+            <div class="row g-0">
+                <!-- Main Image -->
+                <div class="col-lg-8">
+                    <div class="main-image-container">
+                        <img src="<%=listing.image.url%>" 
+                            alt="<%listing.type%>" class="main-image" id="mainImage">
+                        <!-- Status Badge -->
+                        <div class="status-badge">
+                            <span class="badge bg-success fs-6"><%=listing.purpose%></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Property Quick Info -->
+                <div class="col-lg-4">
+                    <div class="property-quick-info h-100">
+                        <div class="p-4 h-100 d-flex flex-column">
+                            <div class="mb-4">
+                                <h1 class="property-title"><%=listing.title%></h1>
+                                <p class="property-location mb-3">
+                                    <i class="fas fa-map-marker-alt me-2"></i><%=listing.area%>, <%=listing.city%>, <%=listing.state%>- <%=listing.pincode%>
+                                </p>
+                                <div class="property-price"><%=listing.price.toLocaleString("en-IN",{style:"currency", currency:"INR"})%></div>
+                            </div>
+                            
+                            <!-- Property Features -->
+                            <div class="property-features mb-4">
+                                <div class="row g-3">
+                                    <!-- <div class="col-6">
+                                        <div class="feature-item">
+                                            <i class="fas fa-bed feature-icon"></i>
+                                            <div>
+                                                <div class="feature-value">4</div>
+                                                <div class="feature-label">Bedrooms</div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!-- <div class="col-6">
+                                        <div class="feature-item">
+                                            <i class="fas fa-bath feature-icon"></i>
+                                            <div>
+                                                <div class="feature-value">3</div>
+                                                <div class="feature-label">Bathrooms</div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-6">
+                                        <div class="feature-item">
+                                            <i class="fas fa-ruler-combined feature-icon"></i>
+                                            <div>
+                                                <div class="feature-value"><%=listing.size%></div>
+                                                <div class="feature-label">Sq Ft</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="feature-item">
+                                            <i class="fas fa-home feature-icon"></i>
+                                            <div>
+                                                <div class="feature-value"><%=listing.type%></div>
+                                                <div class="feature-label">Type</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Action Buttons -->
+                            <div class="mt-auto">
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-primary btn-lg contact-btn">
+                                        <i class="fas fa-phone me-2"></i>Contact Owner
+                                    </button>
+                                    <button class="btn btn-outline-primary schedule-btn">
+                                        <i class="fas fa-calendar me-2"></i>Schedule Visit
+                                    </button>
+                                </div>
+                                <div class="row g-2 mt-2">
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-secondary w-100">
+                                            <i class="fas fa-heart me-1"></i>Save
+                                        </button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-secondary w-100">
+                                            <i class="fas fa-share me-1"></i>Share
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Property Details Content -->
+    <section class="property-content py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Main Content -->
+                <div class="col-lg-8">
+                    <!-- Description Section -->
+                    <div class="content-card mb-4">
+                        <h3 class="section-title">
+                            <i class="fas fa-align-left me-2"></i>Description
+                        </h3>
+                        <div class="property-description">
+                            <p><%=listing.description%></p>
+                        </div>
+                    </div>
+
+                    <!-- Property Details -->
+                    <div class="content-card mb-4">
+                        <h3 class="section-title">
+                            <i class="fas fa-info-circle me-2"></i>Property Details
+                        </h3>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="detail-item">
+                                    <span class="detail-label">Property Type:</span>
+                                    <span class="detail-value"><%=listing.type%></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="detail-item">
+                                    <span class="detail-label">Property Size:</span>
+                                    <span class="detail-value"><%=listing.size%> sq ft</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="detail-item">
+                                    <span class="detail-label">Price:</span>
+                                    <span class="detail-value text-primary fw-bold"><%=listing.price.toLocaleString("en-IN",{style:"currency", currency:"INR"})%></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="detail-item">
+                                    <span class="detail-label">Area/Locality:</span>
+                                    <span class="detail-value"><%=listing.area%></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="detail-item">
+                                    <span class="detail-label">City:</span>
+                                    <span class="detail-value"><%=listing.city%></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="detail-item">
+                                    <span class="detail-label">State:</span>
+                                    <span class="detail-value"><%=listing.state%></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="detail-item">
+                                    <span class="detail-label">Pincode:</span>
+                                    <span class="detail-value"><%=listing.pincode%></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="detail-item">
+                                    <span class="detail-label">Owner:</span>
+                                    <span class="detail-value"><%=listing.owner.name%></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Amenities
+                    <div class="content-card mb-4">
+                        <h3 class="section-title">
+                            <i class="fas fa-star me-2"></i>Amenities
+                        </h3>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="amenity-item">
+                                    <i class="fas fa-car amenity-icon"></i>
+                                    <span>Parking</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="amenity-item">
+                                    <i class="fas fa-shield-alt amenity-icon"></i>
+                                    <span>24/7 Security</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="amenity-item">
+                                    <i class="fas fa-seedling amenity-icon"></i>
+                                    <span>Garden</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="amenity-item">
+                                    <i class="fas fa-swimmer amenity-icon"></i>
+                                    <span>Swimming Pool</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="amenity-item">
+                                    <i class="fas fa-dumbbell amenity-icon"></i>
+                                    <span>Gym</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="amenity-item">
+                                    <i class="fas fa-elevator amenity-icon"></i>
+                                    <span>Elevator</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- Location Map -->
+                    <div class="content-card">
+                        <h3 class="section-title">
+                            <i class="fas fa-map me-2"></i>Location
+                        </h3>
+                        <div class="map-container">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.2547!2d73.7672!3d18.5793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sWakad%2C+<%=listing.city%>%2C+<%=listing.state%>!5e0!3m2!1sen!2sin!4v1567777777777!5m2!1sen!2sin"
+                                width="100%" 
+                                height="300" 
+                                style="border:0; border-radius: 0.5rem;" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Contact Form -->
+                    <div class="content-card mb-4 sticky-top" style="top: 2rem;">
+                        <h4 class="section-title">
+                            <i class="fas fa-envelope me-2"></i>Interested in this property?
+                        </h4>
+                        <form class="contact-form">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Your Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" class="form-control" placeholder="Your Phone" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="4" placeholder="Your Message (Optional)">I am interested in this property. Please contact me with more details.</textarea>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane me-2"></i>Send Inquiry
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Owner Info -->
+                    <div class="content-card">
+                        <h4 class="section-title">
+                            <i class="fas fa-user me-2"></i>Property Owner
+                        </h4>
+                        <div class="owner-info">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="owner-avatar me-3">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1"><%=listing.owner.name%></h5>
+                                    <p class="text-muted mb-0">Property Owner</p>
+                                </div>
+                            </div>
+                            <div class="owner-contact">
+                                <button class="btn btn-outline-primary w-100 mb-2">
+                                    <i class="fas fa-phone me-2"></i>+91 <%=listing.owner.mobile%>
+                                </button>
+                                <button class="btn btn-outline-secondary w-100">
+                                    <i class="fas fa-envelope me-2"></i>Send Message
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const mobileNo= "<%=listing.owner.mobile%>";
+    </script>
+    <script src="/public/JS/show.js"></script>
+</body>

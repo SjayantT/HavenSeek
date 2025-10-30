@@ -1,0 +1,33 @@
+body {
+            background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%);
+            font-family: 'Inter', sans-serif;
+        }
+        .terms-section {
+            max-width: 850px;
+            margin: 3rem auto 3rem auto;
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 8px 40px rgba(79,70,229,0.10);
+        }
+        .terms-title {
+            color: #4f46e5;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .terms-list {
+            margin-bottom: 2rem;
+        }
+        .terms-list li {
+            margin-bottom: 1rem;
+        }
+        .terms-section h4 {
+            color: #4f46e5;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .terms-section p, .terms-section li {
+            color: #404040;
+        }

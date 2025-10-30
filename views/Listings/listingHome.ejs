@@ -1,0 +1,170 @@
+<% layout("Layouts/boilerplate") %>
+<!-- Hero Section with Filters -->
+<body>
+<style>
+    .view-details:hover{
+        color:black !important;
+    }
+</style>
+
+<!-- Simplified Filter Section -->
+<section class="py-5 mt-12" style="background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%); padding-top: 100px;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h1 class="fw-bold mb-3" style="color: #4f46e5;">Find Your Perfect Property</h1>
+      <p class="lead text-muted">Use our search to discover properties that match your requirements</p>
+    </div>
+     
+    <!-- Filter Card -->
+    <div class="card shadow-lg border-0 mb-4" style="border-radius: 1rem;">
+      <div class="card-body p-4">
+        <form action="/listings/filter" method="post">
+          <div class="row g-3 align-items-end">
+            
+            <!-- City -->
+            <div class="col-lg-3 col-md-4">
+              <label class="form-label fw-semibold">
+                <i class="fas fa-map-marker-alt me-2 text-indigo-600"></i>City
+              </label>
+              <input type="text" class="form-control" placeholder="Enter city" name="city" style="border-radius: 0.5rem;">
+            </div>
+
+            <!-- State -->
+            <div class="col-lg-3 col-md-4">
+              <label class="form-label fw-semibold">
+                <i class="fas fa-flag me-2 text-indigo-600"></i>State
+              </label>
+              <select class="form-select" name="state" style="border-radius: 0.5rem;">
+                <option value="" disabled selected>Select your state</option>
+                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Ladakh">Ladakh</option>
+                <option value="Lakshadweep">Lakshadweep</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Puducherry">Puducherry</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="West Bengal">West Bengal</option>
+              </select>
+            </div>
+
+            <!-- Price Range -->
+            <div class="col-lg-4 col-md-4">
+              <label class="form-label fw-semibold">
+                <i class="fas fa-rupee-sign me-2 text-indigo-600"></i>Price Range
+              </label>
+              <div class="row g-2">
+                <div class="col-6">
+                  <input type="number" class="form-control" placeholder="Min Price" name="min_price" style="border-radius: 0.5rem;">
+                </div>
+                <div class="col-6">
+                  <input type="number" class="form-control" placeholder="Max Price" name="max_price" style="border-radius: 0.5rem;">
+                </div>
+              </div>
+            </div>
+
+            <!-- Search Button -->
+            <div class="col-lg-2 col-md-12">
+              <button type="submit" class="btn w-100 fw-bold text-white" style="background: #4f46e5; border-radius: 0.5rem; padding: 0.6rem 1rem;">
+                <i class="fas fa-search me-2"></i>Search
+              </button>
+            </div>
+            
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Property Listings -->
+<section class="py-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3 class="fw-bold text-gray-800">Available Properties</h3>
+      <div class="d-flex gap-2">
+        <select class="form-select form-select-sm" style="width: auto;">
+          <option>Sort by Price</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Newest First</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Property Cards Grid - Responsive -->
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+      
+      <!-- Property Card 1 -->
+
+      <% for(listing of listings){ %>
+          <div class="col">
+            <div class="card h-100 shadow-sm border-0" style="border-radius: 1rem; overflow: hidden;">
+              <div class="position-relative">
+                <img src="<%=listing.image.url%>" 
+                    class="card-img-top" style="height: 200px; object-fit: cover;" alt="Modern Villa">
+                <div class="position-absolute top-0 start-0 m-2">
+                  <span class="badge bg-success"><%=listing.purpose%></span>
+                </div>
+                <div class="position-absolute top-6 start-0 m-2">
+                  <span class="badge bg-info text-dark"><%=listing.type%></span>
+                </div>
+                <div class="position-absolute top-0 end-0 m-2">
+                  <button class="btn btn-light btn-sm rounded-circle">
+                    <i class="far fa-heart"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title fw-bold" style="color: #4f46e5;"><%=listing.price.toLocaleString("en-IN",{style:"currency", currency:"INR"})%></h5>
+                <h6 class="card-subtitle mb-2"><%=listing.title%></h6>
+                <p class="card-text text-muted small">
+                  <i class="fas fa-map-marker-alt me-1"></i><%=listing.area%>,&nbsp;<%=listing.city%>,&nbsp;<%=listing.state%>
+                </p>
+                <div class="row text-center mt-3">
+                  <div class="col-4">
+                    <small><i class="fas fa-ruler-combined"></i> <%=listing.size%> sqft </small>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer bg-transparent border-0">
+                <a href="/listings/<%=listing._id%>">
+                  <button class="btn view-details btn-outline-primary w-100" style="border-color: #4f46e5; color: #4f46e5;">
+                    View Details
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+      <% } %>
+    </div>
+  </div>
+</section>
+</body>

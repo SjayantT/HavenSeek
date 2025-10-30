@@ -1,0 +1,119 @@
+<% layout("Layouts/boilerplate") %>
+
+ <section class="relative h-screen flex items-center justify-center text-center text-white scroll-reveal">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1920&q=8"
+           class="w-full h-full object-cover" alt="Luxury Home">
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl px-6">
+      <h2 class="text-5xl md:text-6xl font-extrabold mb-6 animate-fadeInUp">
+        Find Your Perfect <span class="text-indigo-400">Haven</span> with HavenSeek
+      </h2>
+      <p class="text-lg md:text-xl leading-relaxed text-gray-200 mb-5 animate-fadeInUp" style="animation-delay:0.3s;">
+        Discover houses, flats, and plots tailored to your lifestyle. From modern apartments in bustling cities to serene homes in peaceful suburbs — HavenSeek helps you explore, compare, and choose the perfect property with ease.
+      </p>
+      <a href="#properties" class="bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-full text-lg font-semibold shadow-md transition duration-300 animate-fadeInUp" style="animation-delay:0.6s;">
+        Browse Properties
+      </a>
+    </div>
+  </section>
+
+  <!-- Properties Section -->
+<section id="properties" class="max-w-7xl mx-auto px-6 py-16">
+    <h3 class="text-3xl font-bold mb-8 text-gray-800 text-center">Explore Properties</h3>
+
+    <!-- Listing Section -->
+  <div class="flex items-center justify-between mb-3">
+    <h2 class="text-xl font-bold text-gray-800">Villas</h2>
+    <a href="/villas" class="flex items-center text-sm text-indigo-600 hover:underline">
+      See More 
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" 
+          stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-1">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+  </div>
+
+<!-- Cards Section -->
+<div class="flex space-x-4 overflow-x-auto pb-3 scroll-smooth custom-scrollbar mb-5">
+  <!-- Card 1 -->
+  <% for(data of listing) {%>
+    <% let count=0; %>
+    <% if(data.type==="Villa" && count<=8){%>
+      <div class="flex space-x-4 overflow-x-auto pb-3 scroll-smooth custom-scrollbar mb-5"></div>
+      <div class="min-w-[250px] bg-white rounded-lg shadow-md overflow-hidden scroll-reveal">
+        <img src="<%= data.image.url %>" 
+            class="w-full h-32 object-cover" alt="Villa">
+        <div class="p-2">
+          <h5 class="font-bold text-sm"><%= data.title %></h5>
+          <p class="text-gray-600 text-xs">Price: <%=data.price.toLocaleString("en-IN",{style:"currency", currency:"INR"})%></p>
+        </div>
+      </div>
+      <% count++; %>
+    <% } %>
+  <% } %>
+</div>
+  
+
+    <!-- Flats -->
+    <div class="flex items-center justify-between mb-3">
+    <h2 class="text-xl font-bold text-gray-800">Flats</h2>
+    <a href="/villas" class="flex items-center text-sm text-indigo-600 hover:underline">
+      See More 
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" 
+          stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-1">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+  </div>
+
+  <!-- Cards Section -->
+  <div class="flex space-x-4 overflow-x-auto pb-3 scroll-smooth custom-scrollbar mb-5">
+    <!-- Card 1 -->
+    <% for(data of listing) { %>
+      <% let count=0; %>
+      <% if(data.type==="Flat" && count<+8){ %>
+        <div class="min-w-[250px] bg-white rounded-lg shadow-md overflow-hidden scroll-reveal">
+          <img src="<%= data.image.url %>" 
+              class="w-full h-32 object-cover" alt="Flats">
+          <div class="p-2">
+            <h5 class="font-bold text-sm"><%= data.title %></h5>
+            <p class="text-gray-600 text-xs">Price: <%=data.price.toLocaleString("en-IN",{style:"currency", currency:"INR"})%></p>
+          </div>
+        </div>
+        <% count++; %>
+      <% } %>
+    <% } %>
+  </div>
+    <!-- Plots -->
+     
+    <div class="flex items-center justify-between mb-3">
+    <h2 class="text-xl font-bold text-gray-800">Plots</h2>
+    <a href="/villas" class="flex items-center text-sm text-indigo-600 hover:underline">
+      See More 
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" 
+          stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-1">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+  </div>
+
+  <!-- Cards Section -->
+  <div class="flex space-x-4 overflow-x-auto pb-3 scroll-smooth custom-scrollbar mb-5">
+    <% for(data of listing) { %>
+      <% let count=0; %>
+      <% if(data.type==="Plot" && count<=8){%>
+        <div class="min-w-[250px] bg-white rounded-lg shadow-md overflow-hidden scroll-reveal">
+          <img src="<%=data.image.url%>" 
+              class="w-full h-32 object-cover" alt="Plot">
+          <div class="p-2">
+            <h5 class="font-bold text-sm"><%=data.title%></h5>
+            <p class="text-gray-600 text-xs">Price: <%=data.price.toLocaleString("en-IN",{style:"currency", currency:"INR"})%></p>
+          </div>
+        </div>
+        <% count++; %>
+      <% } %>
+    <% } %>
+  </div>
+</section>

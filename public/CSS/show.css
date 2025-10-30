@@ -1,0 +1,311 @@
+:root {
+    --primary-color: #4f46e5;
+    --primary-hover: #4338ca;
+    --text-dark: #1f2937;
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
+    --background-light: #f8fafc;
+    --success-color: #10b981;
+}
+
+/* Property Hero Section */
+.property-hero {
+    margin-top: 70px;
+}
+
+.main-image-container {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+}
+
+.main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.main-image:hover {
+    transform: scale(1.02);
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+}
+
+.gallery-btn {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(10px);
+    border: none !important;
+}
+
+.status-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
+.property-quick-info {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border-left: 1px solid var(--border-color);
+}
+
+.property-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.property-location {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.property-location i {
+    color: var(--primary-color);
+}
+
+.property-price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Property Features */
+.property-features {
+    background: rgba(79, 70, 229, 0.05);
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.feature-icon {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    width: 20px;
+    text-align: center;
+}
+
+.feature-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.feature-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+/* Buttons */
+.contact-btn {
+    background: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    font-weight: 600;
+}
+
+.contact-btn:hover {
+    background: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+}
+
+.schedule-btn {
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    font-weight: 600;
+}
+
+.schedule-btn:hover {
+    background: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+/* Content Cards */
+.content-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--border-color);
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #f3f4f6;
+}
+
+.section-title i {
+    color: var(--primary-color);
+}
+
+/* Property Description */
+.property-description p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+/* Property Details */
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.detail-value {
+    font-weight: 600;
+    color: var(--text-dark);
+    text-align: right;
+}
+
+/* Amenities */
+.amenity-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--background-light);
+    border-radius: 0.5rem;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.amenity-icon {
+    color: var(--primary-color);
+    width: 20px;
+    text-align: center;
+}
+
+/* Contact Form */
+.contact-form .form-control {
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    padding: 0.75rem;
+    font-size: 0.95rem;
+}
+
+.contact-form .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.25);
+}
+
+.contact-form .btn-primary {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Owner Info */
+.owner-avatar {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), #7c3aed);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.owner-info h5 {
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+/* Map Container */
+.map-container {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .property-hero .row {
+        flex-direction: column-reverse;
+    }
+    
+    .main-image-container {
+        height: 300px;
+    }
+    
+    .property-quick-info {
+        border-left: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .property-title {
+        font-size: 1.75rem;
+    }
+    
+    .property-price {
+        font-size: 2rem;
+    }
+    
+    .content-card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .property-title {
+        font-size: 1.5rem;
+    }
+    
+    .property-price {
+        font-size: 1.75rem;
+    }
+    
+    .content-card {
+        padding: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.25rem;
+    }
+}
+
+/* Animation */
+.content-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
