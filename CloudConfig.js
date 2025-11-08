@@ -8,13 +8,23 @@ cloudinary.config({
     api_secret:process.env.CLOUD_SECRET
 });
 
-const storage= new CloudinaryStorage({
-    cloudinary:cloudinary,
-    params:{
-        folder:"HavenSeek",
-        allowed_format:["jpg", "jpeg", "png"],
-        public_id: (req,file)=> "computed-filename-using-request"
-    }
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "HavenSeek",
+    allowed_formats: ["jpg", "jpeg", "png"],
+    public_id: (req, file) => `${Date.now()}-${file.originalname}`
+  }
 });
+
+
+// const storage= new CloudinaryStorage({
+//     cloudinary:cloudinary,
+//     params:{
+//         folder:"HavenSeek",
+//         allowed_format:["jpg", "jpeg", "png"],
+//         public_id: (req,file)=> "computed-filename-using-request"
+//     }
+// });
 
 module.exports={cloudinary, storage};
