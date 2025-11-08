@@ -1,0 +1,328 @@
+<% layout("Layouts/boilerplate") %>
+  <link rel="stylesheet" href="/public/CSS/admin.css" />
+<body>
+<!-- Navigation (Include your existing navbar here) -->
+<!-- Admin Header Section -->
+<section class="admin-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="d-flex align-items-center">
+                    <div class="admin-icon me-4">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="admin-info">
+                        <h1 class="admin-name">Admin Dashboard</h1>
+                        <p class="admin-role"><i class="fas fa-cog me-2"></i>Manage Properties & Agents</p>
+                        <div class="admin-stats">
+                            <span class="stat-item">
+                                <i class="fas fa-home me-1"></i>
+                                <strong id="totalListings"><%-listings.length%></strong> Active Listings
+                            </span>
+                            <span class="stat-item ms-4">
+                                <i class="fas fa-check-circle me-1"></i>
+                                <strong id="totalSold"><%-soldListings.length%></strong> Sold Properties
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <div class="admin-actions">
+                    <button class="btn btn-outline-primary me-2" onclick="location.reload()">
+                        <i class="fas fa-sync me-2"></i>Refresh
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Admin Content -->
+<section class="admin-content py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="admin-sidebar">
+                    <div class="sidebar-card">
+                        <ul class="nav nav-pills flex-column" id="adminTabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-bs-toggle="pill" href="/listings">
+                                    <i class="fas fa-list me-2"></i>All Listings
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="pill" href="#sold">
+                                    <i class="fas fa-check-circle me-2"></i>Sold Properties
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="pill" href="#agents">
+                                    <i class="fas fa-user-tie me-2"></i>Manage Agents
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <div class="tab-content">
+                    
+                    <!-- Listings Tab -->
+                    <div class="tab-pane fade show active" id="listings">
+                        <div class="content-card">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="card-title">
+                                    <i class="fas fa-list me-2 text-primary"></i>All Property Listings
+                                </h5>
+                                <input type="text" class="form-control" id="searchListings" placeholder="Search properties..." style="max-width: 250px;">
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Property</th>
+                                            <th>Owner</th>
+                                            <th>Price</th>
+                                            <th>Type</th>
+                                            <th>Agent</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="listingsBody">
+                                        <!-- Listings will be rendered here by server -->
+                                        <% for(listing of listings){ %>
+                                            <tr data-prop-id="1">
+                                            <td><strong><%-listing.title%></strong></td>
+                                            <td><%-listing.owner.name%></td>
+                                            <td><%-listing.price.toLocaleString("en-IN",{style:"currency", currency:"INR"})%></td>
+                                            <td><span class="badge bg-light text-dark"><%-listing.type%></span></td>
+                                            <td>
+                                                <% if(listing.agent){ %>
+                                                    <span class="agent-status assigned">
+                                                    <i class="fas fa-user-check me-1"></i><%-listing.agent.name%>
+                                                </span>
+                                               <% } %>
+                                               <% if(!listing.agent){ %>
+                                                <span class="agent-status unassigned">
+                                                    <i class="fas fa-user-slash me-1"></i>Unassigned
+                                                </span>
+                                                <% } %>
+                                                
+                                            </td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <% if(!listing.agent){ %>
+                                                        <button class="action-btn assign-btn" onclick="openAssignModal('<%-listing._id%>', '<%-listing.title%>')" title="Assign Agent">
+                                                        <i class="fas fa-user-check me-1"></i>Assign
+                                                        </button>
+                                                   <% } %>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sold Properties Tab -->
+                    <div class="tab-pane fade" id="sold">
+                        <div class="content-card">
+                            <h5 class="card-title">
+                                <i class="fas fa-check-circle me-2 text-primary"></i>Sold Properties
+                            </h5>
+
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Property</th>
+                                            <th>Owner</th>
+                                            <th>Agent</th>
+                                            <th>Sold Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for(let listing of soldListings) { %>
+                                            <tr>
+                                                <td><strong><%-listing.title%></strong></td>
+                                                <td><%-listing.owner.name%></td>
+                                                <td><%-listing.agent.name%></td>
+                                                <td><%-listing.price.toLocaleString("en-IN",{style:"currency", currency:"INR"})%></td>
+                                            </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agents Tab -->
+                    <!-- <div class="tab-pane fade" id="agents">
+                        <div class="content-card">
+                            <h5 class="card-title">
+                                <i class="fas fa-user-tie me-2 text-primary"></i>Manage Agents
+                            </h5>
+
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="agent-card">
+                                        <div class="agent-avatar">A</div>
+                                        <div class="agent-name">Anjali S.</div>
+                                        <div class="agent-email">anjali@havenseek.com</div>
+                                        <div class="agent-stats">
+                                            <div class="agent-stat">
+                                                <div class="agent-stat-value">6</div>
+                                                <div class="agent-stat-label">Properties</div>
+                                            </div>
+                                            <div class="agent-stat">
+                                                <div class="agent-stat-value">2</div>
+                                                <div class="agent-stat-label">Sold</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="agent-card">
+                                        <div class="agent-avatar">V</div>
+                                        <div class="agent-name">Vikas Mehta</div>
+                                        <div class="agent-email">vikas@havenseek.com</div>
+                                        <div class="agent-stats">
+                                            <div class="agent-stat">
+                                                <div class="agent-stat-value">5</div>
+                                                <div class="agent-stat-label">Properties</div>
+                                            </div>
+                                            <div class="agent-stat">
+                                                <div class="agent-stat-value">1</div>
+                                                <div class="agent-stat-label">Sold</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="agent-card">
+                                        <div class="agent-avatar">S</div>
+                                        <div class="agent-name">Sameer Jadhav</div>
+                                        <div class="agent-email">sameer@havenseek.com</div>
+                                        <div class="agent-stats">
+                                            <div class="agent-stat">
+                                                <div class="agent-stat-value">4</div>
+                                                <div class="agent-stat-label">Properties</div>
+                                            </div>
+                                            <div class="agent-stat">
+                                                <div class="agent-stat-value">2</div>
+                                                <div class="agent-stat-label">Sold</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="agent-card">
+                                        <div class="agent-avatar">P</div>
+                                        <div class="agent-name">Priya Chauhan</div>
+                                        <div class="agent-email">priya@havenseek.com</div>
+                                        <div class="agent-stats">
+                                            <div class="agent-stat">
+                                                <div class="agent-stat-value">3</div>
+                                                <div class="agent-stat-label">Properties</div>
+                                            </div>
+                                            <div class="agent-stat">
+                                                <div class="agent-stat-value">1</div>
+                                                <div class="agent-stat-label">Sold</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Assign Agent Modal - IMPROVED & ATTRACTIVE -->
+<div class="modal fade" id="assignAgentModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content assign-modal-content">
+            <div class="modal-header assign-modal-header">
+                <div>
+                    <h5 class="modal-title">
+                        <i class="fas fa-user-tie me-2"></i>Assign Agent to Property
+                    </h5>
+                    <p class="modal-subtitle" id="propertyNameDisplay">Modern Villa in Wakad</p>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body assign-modal-body">
+                <form id="assignForm">
+                    <label class="form-label fw-bold mb-3">
+                        <i class="fas fa-search me-2 text-primary"></i>Select an Agent
+                    </label>
+                    
+                    <div class="agents-list">
+                        <% for(let agent of agents) {%>
+                            <div class="agent-option" onclick="selectAgent('<%-agent._id%>', '<%-agent.name%>')">
+                                <div class="agent-option-avatar"><%- agent.name.slice(0,1)%></div>
+                                <div class="agent-option-info">
+                                    <div class="agent-option-name"><%-agent.name%></div>
+                                </div>
+                                <input type="radio" name="agentSelect" value="<%-agent._id%>" class="agent-radio">
+                            </div>
+                        <% } %>
+                        
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer assign-modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-2"></i>Cancel
+                </button>
+                <button type="button" class="btn btn-primary assign-btn-modal" onclick="saveAgentAssignment()">
+                    <i class="fas fa-check me-2"></i>Confirm Assignment
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Property Modal -->
+<div class="modal fade" id="editPropertyModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Property</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <div class="mb-3">
+                        <label class="form-label">Property Title</label>
+                        <input type="text" class="form-control" id="editTitle">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Price</label>
+                        <input type="text" class="form-control" id="editPrice">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="savePropertyEdit()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

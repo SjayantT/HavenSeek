@@ -128,7 +128,8 @@ function storeFormData() {
         email: document.getElementById('signupEmail') ? document.getElementById('signupEmail').value : '',
         mobile: document.getElementById('signupMobile') ? document.getElementById('signupMobile').value : '',
         aadhar: document.getElementById('signupaadhar') ? document.getElementById('signupaadhar').value.replace(/\s/g, '') : '',
-        password: document.getElementById('signupPassword') ? document.getElementById('signupPassword').value : ''
+        password: document.getElementById('signupPassword') ? document.getElementById('signupPassword').value : '',
+        role: document.getElementById('role') ? document.getElementById('role').value: ''
     };
     
     // Debug: Log the stored data

@@ -1,57 +1,114 @@
+<link rel="stylesheet" href="/public/CSS/navbar.css" />
 <body>
   <header class="fixed w-full top-0 left-0 z-40">
     <nav class="bg-white shadow-md">
-      <div class="max-w-7xl mx-auto px-2 py-3 flex justify-between items-center">
-        <a href="/" class="text-2xl font-bold text-indigo-600 ">HavenSeek</a>
+      <div
+        class="max-w-7xl mx-auto px-2 py-3 flex justify-between items-center"
+      >
+        <a href="/" class="text-2xl font-bold text-indigo-600">HavenSeek</a>
 
         <!-- Desktop Menu -->
         <div class="hidden md:flex space-x-2">
-          <a href="/" class="text-gray-700 hover:text-indigo-600"><button type="button" class="btn navbtns">Home</button></a>
-          <a href="/listings" class="text-gray-700 hover:text-indigo-600"><button type="button" class="btn navbtns">Browse Listings</button></a>
+          <a href="/" class="text-gray-700 hover:text-indigo-600 "
+            ><button type="button" class="btn navbtns">Home</button></a
+          >
+          <a href="/listings" class="text-gray-700 hover:text-indigo-600"
+            ><button type="button" class="btn navbtns">
+              Browse Properties
+            </button></a>
           <% if(currUser) { %>
-            <a href="/listings/new" class="text-gray-700 hover:text-indigo-600"><button type="button" class="btn navbtns">Post a Listing</button></a>
-            <a href="/user/logout" class="text-gray-700 hover:text-indigo-600"><button type="button" class="btn btn-danger logout navbtns">Logout</button></a>
-            <a href="user/<%=currUser._id%>/profile" class="nav-link p-0" id="navProfileLink" style="display: flex; align-items: center;">
-              <span id="navProfileAvatar" class="profile-avatar-navbar"></span>
-            </a>
+          <a href="/listings/new" class="text-gray-700 hover:text-indigo-600"
+            ><button type="button" class="btn navbtns">
+              Post a Listing
+            </button></a
+          >
+          <a href="/user/<%-currUser.id%>/profile" class="text-gray-700 hover:text-indigo-600"
+            ><button type="button" class="btn btn-success logout navbtns">
+              Profile
+            </button></a
+          >
+          <a href="/user/logout" class="text-gray-700 hover:text-indigo-600"
+            ><button type="button" class="btn btn-danger logout navbtns">
+              Logout
+            </button></a
+          >
+          <% } %> <% if(!currUser) { %>
+          <a href="/user/signup" class="text-gray-700 hover:text-indigo-600"
+            ><button type="button" class="btn signup navbtns">Signup</button></a
+          >
+          <a href="/user/login" class="text-gray-700 hover:text-indigo-600"
+            ><button type="button" class="btn login navbtns">Login</button></a
+          >
           <% } %>
-          <% if(!currUser) { %>
-            <a href="/user/signup" class="text-gray-700 hover:text-indigo-600"><button type="button" class="btn signup navbtns">Signup</button></a>
-            <a href="/user/login" class="text-gray-700 hover:text-indigo-600"><button type="button" class="btn login navbtns">Login</button></a>
-            
-          <% } %>
-
         </div>
 
         <!-- Mobile Menu Button -->
-        <button id="menu-btn" aria-expanded="false" aria-controls="mobile-menu"
-                class="md:hidden text-gray-700 focus:outline-none">
+        <button
+          id="menu-btn"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          class="md:hidden text-gray-700 focus:outline-none"
+        >
           <!-- Open (hamburger) -->
-          <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          <svg
+            id="icon-open"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
           </svg>
 
           <!-- Close (X) -->
-          <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" fill="none"
-              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          <svg
+            id="icon-close"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6 hidden"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
         </button>
       </div>
     </nav>
 
     <!-- Mobile Drawer (hidden off-canvas by translate-x-full) -->
-    <div id="mobile-menu"
-        class="fixed top-0 right-0 h-full w-2/3 bg-white shadow-lg p-6 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden"
-        aria-hidden="true">
+    <div
+      id="mobile-menu"
+      class="fixed top-0 right-0 h-full w-2/3 bg-white shadow-lg p-6 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden"
+      aria-hidden="true"
+    >
       <!-- Close row inside drawer -->
       <div class="flex items-center justify-between mb-4">
         <a href="/" class="text-xl font-bold text-indigo-600">HavenSeek</a>
         <button id="close-btn" class="text-gray-700 focus:outline-none">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
         </button>
       </div>
@@ -59,22 +116,37 @@
       <!-- Menu Links -->
       <nav class="flex flex-col space-y-3">
         <a href="/" class="text-gray-700 hover:text-indigo-600">Home</a>
-        <a href="/listings" class="text-gray-700 hover:text-indigo-600">Browse Properties</a>
+        <a href="/listings" class="text-gray-700 hover:text-indigo-600"
+          >Browse Properties</a
+        >
         <% if(currUser) { %>
-            <a href="/listings/new" class="text-gray-700 hover:text-indigo-600"><button type="button" class="btn navbtns">Post a Listing</button></a>
-            <a href="/user/profile" class="text-gray-700 hover:text-indigo-600"><button type="button" class="btn btn-success logout navbtns">Profile</button></a>
-            <a href="/user/logout" class="text-gray-700 hover:text-indigo-600"><button type="button" class="btn btn-danger logout navbtns">Logout</button></a>
-          <% } %>
-        <% if(!currUser) { %>
-          <a href="/user/signup" class="text-gray-700 hover:text-indigo-600"><button type="button" class="btn signup navbtns">Signup</button></a>
-            <a href="/user/login" class="text-gray-700 hover:text-indigo-600"><button type="button" class="btn login navbtns">Login</button></a>
+        <a href="/listings/new" class="text-gray-700 hover:text-indigo-600"
+          ><button type="button" class="btn navbtns">Post a Listing</button></a
+        >
+        <a href="/user/profile" class="text-gray-700 hover:text-indigo-600"
+          ><button type="button" class="btn btn-success logout navbtns">
+            Profile
+          </button></a
+        >
+        <a href="/user/logout" class="text-gray-700 hover:text-indigo-600"
+          ><button type="button" class="btn btn-danger logout navbtns">
+            Logout
+          </button></a
+        >
+        <% } %> <% if(!currUser) { %>
+        <a href="/user/signup" class="text-gray-700 hover:text-indigo-600"
+          ><button type="button" class="btn signup navbtns">Signup</button></a
+        >
+        <a href="/user/login" class="text-gray-700 hover:text-indigo-600"
+          ><button type="button" class="btn login navbtns">Login</button></a
+        >
         <% } %>
       </nav>
     </div>
   </header>
- 
+
   <script src="/public/JS/navbar.js"></script>
-   <script>
+  <script>
     const user = "<%- JSON.stringify(currUser || null) %>";
   </script>
 </body>

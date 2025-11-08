@@ -1,5 +1,6 @@
 const User= require("../Models/UserSchema.js");
 const Listing = require("../Models/ListingSchema.js");
+const Admin= require("../Models/AdminSchema.js");
 const bcrypt = require('bcrypt');
 
 module.exports.signupForm= (req,res,next)=>{
@@ -7,10 +8,9 @@ module.exports.signupForm= (req,res,next)=>{
 }
 
 module.exports.signup= async(req,res)=>{
-    const {name, username, email, mobile,aadhar, password}= req.body;
+    const {name, username, email, mobile,aadhar,role, password}= req.body;
     const createdAt = new Date().toISOString();
-    let newUser= new User({name, username, email, mobile, aadhar, createdAt});
-    console.log(newUser);
+    let newUser= new User({name, username, email, mobile, aadhar,role, createdAt});
     const savedUser= await User.register(newUser, password);
     req.login(newUser, (err)=>{
         if(err){
@@ -101,3 +101,31 @@ module.exports.updatePassword= async(req,res,next)=>{
     await user.save();
     req.flash("success", "Password updated Successfully.")
 }
+
+
+
+module.exports.assignAgentToListing= async(req,res,next)=>{
+    const { propertyId, agentId }= req.body;
+    const listing= Listing.findById(propertyId);
+    if(!listing){
+        req.flash("error", "Listing not found!");
+        return res.redirect("/user/admin");
+    }
+    await listing.updateOne({agent: agentId});
+    console.log("saved");
+     res.json({
+      success: success,
+      message: "Agent assigned successfully"
+    });
+}
+
+module.exports.agentDashboard= async(req, res, next)=>{
+    if(!req.isAuthenticated()){
+        req.flash("error", "You must be logged in as an agent profile!");
+        return res.redirect("/user/login");
+    }
+    const id= req.params.id;
+    const listings = await Listing.find({agent: id});
+    res.render("./Users/propertyManagement.ejs", {listings});
+}
+

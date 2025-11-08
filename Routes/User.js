@@ -23,11 +23,18 @@ router.post("/login", passport.authenticate("local",{failureRedirect:"/login", f
 
 router.get("/logout", UserController.logout);
 
+
+router.post("/admin/assign-agent", UserController.assignAgentToListing);
+
 router.get("/:id/profile", UserController.userProfile);
+
+router.get("/:id/agent", UserController.agentDashboard);
 
 router.put("/:id/update/user-profile", UserController.updateProfile);
 
 router.post("/:id/update/user-password", UserController.updatePassword);
+
+
 
 
 

@@ -16,6 +16,10 @@ const UserSchema= new Schema({
         type:String,
         default:"Hey there! I am using HavenSeek."
     },
+    role:{
+        type:String,
+        required:true
+    },
     email:{
         type:String,
         required:true,

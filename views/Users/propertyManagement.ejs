@@ -1,0 +1,78 @@
+<% layout("Layouts/boilerplate") %>
+<link rel="stylesheet" href="/public/CSS/AgentPropertyStatus.css" />
+
+<body>
+  <br /><br />
+  <!-- Header Section -->
+  <section class="status-header mt-12">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <h1 class="status-title">
+            <i class="fas fa-tasks me-2"></i>Property Status Management
+          </h1>
+          <p class="status-subtitle">
+            Update and track your assigned property statuses
+          </p>
+        </div>
+        <div class="col-md-4 text-md-end">
+          <a href="/user/<%-currUser._id%>/profile" class="btn btn-primary">
+            <i class="fas fa-arrow-left me-2"></i>Back to Profile
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Status Management Content -->
+  <section class="status-content py-5">
+    <div class="container">
+      <!-- Status Cards Grid -->
+      <div class="row g-3">
+        <% for(let listing of listings){ %>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="status-card">
+            <div class="status-card-image">
+              <img src="<%-listing.image.url%>" alt="Property" />
+              <span class="status-badge in-progress"><%-listing.currStatus%></span>
+            </div>
+
+            <div class="status-card-content">
+              <h6 class="card-property-title"><%-listing.title%></h6>
+
+              <div class="property-meta">
+                <div class="meta-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span><%-listing.city%>, <%-listing.state%></span>
+                </div>
+                <div class="meta-item">
+                  <i class="fas fa-rupiah"></i>
+                  <span><%=listing.price.toLocaleString("en-IN",{style:"currency", currency:"INR"})%></span>
+                </div>
+              </div>
+
+              <div class="status-update-section">
+                <form class="status-form" action="/listings/<%-listing._id%>/update-status" method="post">
+                  <select
+                    name="status"
+                    class="form-select form-select-sm status-select"
+                  >
+                    <option value="in-progress">In-Progress</option>
+                    <option value="sold">Sold</option>
+                  </select>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-sm w-100 mt-2"
+                  >
+                    <i class="fas fa-check me-1"></i>Update
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </section>
+</body>

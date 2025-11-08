@@ -7,6 +7,7 @@ const mongoose= require("mongoose");
 const mongodb= require("mongodb");
 const dotenv= require("dotenv").config();
 const override= require("method-override");
+const PDFDocument= require("pdfkit");
 
 
 const engine= require("ejs-mate");
@@ -23,6 +24,7 @@ app.use(override("_method"));
 const Listing= require("./Models/ListingSchema.js");
 const Review= require("./Models/ReviewSchema.js");
 const User= require("./Models/UserSchema.js")
+const Admin= require("./Models/AdminSchema.js");
 
 
 // session
@@ -58,6 +60,9 @@ app.use("/", ListingRouter);
 // app.use("/listings", ReviewRouter);
 app.use("/user", UserRouter);
 
+const AdminRouter= require("./Routes/Admin.js");
+app.use("/admin", AdminRouter);
+
 
 
 startServer().then(()=>{
@@ -69,9 +74,7 @@ startServer().then(()=>{
 })
 
 async function startServer(){
-    await mongoose.connect("mongodb://127.0.0.1:27017/HavenSeek")
+    await mongoose.connect(process.env.DB_URL);
 }
-app.listen(port,()=>{
-    console.log("server is started")
-})
+
 

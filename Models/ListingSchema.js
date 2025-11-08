@@ -57,10 +57,18 @@ const ListingSchema= new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     },
+    agent:{
+        type:Schema.Types.ObjectId,
+        ref: "User"
+    },
     reviews:[{
         type: Schema.Types.ObjectId,
         ref: "Review"
-    }]
+    }],
+    currStatus:{
+        type:"String",
+        default: "Unsold",
+    }
 });
 
 const Listing= mongoose.model("Listing", ListingSchema);
