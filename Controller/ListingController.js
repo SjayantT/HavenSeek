@@ -86,7 +86,6 @@ module.exports.filterListings = async (req, res) => {
   const listings = await Listing.find(filter);
   if (listings.length == 0) {
     req.flash("error", "No properties found.");
-    return res.redirect("/listings");
   }
   res.render("./Listings/listingHome.ejs", { listings });
 };
@@ -96,7 +95,6 @@ module.exports.filterByCategory = async (req, res) => {
   const listings = await Listing.find({ type: category });
   if (listings.length == 0) {
     req.flash("error", `No properties found for ${category} category.`);
-    return res.redirect("/");
   }
   res.render("./Listings/listingHome.ejs", { listings });
 };

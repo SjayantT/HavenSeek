@@ -40,8 +40,12 @@
                   <strong><%=listings.length%></strong> Properties Listed
                 </span>
                 <% if(user.role==="Agent"){%>
-                  <span class="stat-item ms-4">
-                    <a href="/user/<%-user._id%>/agent" style="text-decoration: underline;">Go to Agent Dashboard</a>
+                <span class="stat-item ms-4">
+                  <a
+                    href="/user/<%-user._id%>/agent"
+                    style="text-decoration: underline"
+                    >Go to Agent Dashboard</a
+                  >
                 </span>
                 <%}%>
               </div>
@@ -50,7 +54,10 @@
         </div>
         <div class="col-md-4 text-md-end">
           <div class="profile-actions">
-            <button class="btn profileBtn btn-outline-primary me-2">
+            <button
+              class="btn profileBtn btn-outline-primary me-2"
+              id="shareProfileBtn"
+            >
               <i class="fas fa-share me-2"></i>Share Profile
             </button>
             <button
@@ -261,9 +268,14 @@
                   </a>
                 </div>
 
-                <!-- ✅ Move .row OUTSIDE the loop -->
                 <div class="row g-4">
-                  <% listings.forEach(listing => { %>
+                  <% if(listings.length===0){ %>
+                  <div class="text-center mt-5" style="margin: auto">
+                    <h4 class="fw-bold" style="color: #4f46e5">
+                      No Property Found
+                    </h4>
+                  </div>
+                  <% } %> <% listings.forEach(listing => { %>
                   <div class="col-lg-4 col-md-6 col-sm-12">
                     <div
                       class="property-card shadow-sm"
@@ -276,10 +288,15 @@
                           class="img-fluid w-100"
                           style="height: 180px; object-fit: cover"
                         />
-                        <div
-                          class="property-status position-absolute top-0 start-0 bg-primary text-white px-2 py-1 small rounded-end"
-                        >
-                          <%= listing.purpose %>
+                        <div class="position-absolute top-0 start-0 m-2">
+                          <span class="badge bg-success"
+                            ><%=listing.purpose%></span
+                          >
+                        </div>
+                        <div class="position-absolute top-6 start-0 m-2">
+                          <span class="badge bg-info text-dark"
+                            ><%=listing.type%></span
+                          >
                         </div>
                         <div
                           class="property-actions position-absolute top-0 end-0 m-2"
@@ -292,9 +309,13 @@
                               <i class="fas fa-edit"></i>
                             </button>
                           </a>
-                          <a href="/listings/<%-listing._id%>/delete"><button class="btn btn-light btn-sm" title="Delete">
-                            <i class="fas fa-trash"></i>
-                          </button></a>
+                          <a href="/listings/<%-listing._id%>/delete"
+                            ><button
+                              class="btn btn-light btn-sm"
+                              title="Delete"
+                            >
+                              <i class="fas fa-trash"></i></button
+                          ></a>
                         </div>
                       </div>
 
@@ -657,4 +678,37 @@ Experienced property dealer with 5+ years in real estate. Specializing in reside
     </div>
   </div>
   <script src="/public/js/UserProfile.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const shareBtn = document.getElementById("shareProfileBtn");
+
+      shareBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        console.log("Share button clicked");
+
+        // Test: check support
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: "HavenSeek Profile",
+              text: "Check out my property listings on HavenSeek",
+              url: window.location.href,
+            });
+            console.log("Share successful!");
+          } catch (err) {
+            console.error("Share failed or cancelled:", err);
+          }
+        } else {
+          // Fallback to clipboard
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            alert("Profile link copied to clipboard!");
+            console.log("Clipboard copy fallback successful");
+          } catch (err) {
+            console.error("Clipboard copy failed:", err);
+          }
+        }
+      });
+    });
+  </script>
 </body>

@@ -55,7 +55,7 @@ function initContactForm() {
             submitBtn.disabled = true;
             
             setTimeout(() => {
-                showAlert('Your inquiry has been sent successfully! The owner will contact you soon.', 'success');
+                showAlert('Your inquiry has been sent successfully! The agent will contact you soon.', 'success');
                 contactForm.reset();
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;

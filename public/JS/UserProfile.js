@@ -262,23 +262,24 @@ function showAlert(message, type) {
 }
 
 // Share Profile Function
-document.addEventListener('click', function(e) {
-    if (e.target.closest('.btn-outline-primary') && e.target.closest('.btn-outline-primary').innerHTML.includes('Share Profile')) {
-        e.preventDefault();
+// document.addEventListener('click', function(e) {
+//     if (e.target.closest('.btn-outline-primary') && e.target.closest('.btn-outline-primary').innerHTML.includes('Share Profile')) {
+//         e.preventDefault();
         
-        if (navigator.share) {
-            navigator.share({
-                title: 'Rajesh Kumar - HavenSeek Profile',
-                text: 'Check out my property listings on HavenSeek',
-                url: window.location.href
-            });
-        } else {
-            // Fallback: copy to clipboard
-            navigator.clipboard.writeText(window.location.href);
-            showAlert('Profile link copied to clipboard!', 'success');
-        }
-    }
-});
+//         if (navigator.share) {
+//             navigator.share({
+//                 title: 'Rajesh Kumar - HavenSeek Profile',
+//                 text: 'Check out my property listings on HavenSeek',
+//                 url: window.location.href
+//             });
+//         } else {
+//             // Fallback: copy to clipboard
+//             navigator.clipboard.writeText(window.location.href);
+//             showAlert('Profile link copied to clipboard!', 'success');
+//         }
+//     }
+// });
+
 
 // Smooth scrolling for internal links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

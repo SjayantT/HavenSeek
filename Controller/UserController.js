@@ -106,15 +106,14 @@ module.exports.updatePassword= async(req,res,next)=>{
 
 module.exports.assignAgentToListing= async(req,res,next)=>{
     const { propertyId, agentId }= req.body;
-    const listing= Listing.findById(propertyId);
+    const listing= await Listing.findById(propertyId);
     if(!listing){
         req.flash("error", "Listing not found!");
         return res.redirect("/user/admin");
     }
     await listing.updateOne({agent: agentId});
-    console.log("saved");
      res.json({
-      success: success,
+      success: true, 
       message: "Agent assigned successfully"
     });
 }

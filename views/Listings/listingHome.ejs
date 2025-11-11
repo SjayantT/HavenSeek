@@ -16,7 +16,7 @@
     </div>
      
     <!-- Filter Card -->
-    <div class="card shadow-lg border-0 mb-4" style="border-radius: 1rem;">
+    <div class="card shadow-lg border-0 mb-0" style="border-radius: 1rem;">
       <div class="card-body p-4">
         <form action="/listings/filter" method="post">
           <div class="row g-3 align-items-end">
@@ -107,23 +107,28 @@
 <!-- Property Listings -->
 <section class="pb-5">
   <div class="container">
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-5">
       <h3 class="fw-bold text-gray-800">Available Properties</h3>
-      <div class="d-flex gap-2">
+      <!-- <div class="d-flex gap-2">
         <select class="form-select form-select-sm" style="width: auto;">
           <option>Sort by Price</option>
           <option>Price: Low to High</option>
           <option>Price: High to Low</option>
           <option>Newest First</option>
         </select>
-      </div>
+      </div> -->
     </div>
 
     <!-- Property Cards Grid - Responsive -->
     <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
       
       <!-- Property Card 1 -->
-
+        <% if(listings.length===0){ %>
+          <div class="text-center mt-5" style="margin: auto;">
+            <h4 class="fw-bold" style="color: #4f46e5;">No Listings Found</h4>
+            <p class="text-muted mt-2">Try adjusting your search criteria to find what you're looking for.</p>
+          </div>
+        <% } %>
       <% for(listing of listings){ %>
           <div class="col">
             <div class="card h-100 shadow-sm border-0" style="border-radius: 1rem; overflow: hidden;">

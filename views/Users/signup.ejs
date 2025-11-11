@@ -1,8 +1,15 @@
 <% layout("Layouts/boilerplate") %>
+<style>
+    @media (max-width: 768px) {
+        .card {
+            min-width: 320px;
+        }
+    }
+</style>
 <body>
     <br> <br>
     <section class="d-flex align-items-center justify-content-center" style="min-height:100vh; background: linear-gradient(135deg, #e0e7ff 0%, #f5f6fa 100%);">
-        <div class="card shadow-lg border-0 mt-10" style="max-width:350px; width:100%; border-radius: 2rem;">
+        <div class="card shadow-lg border-0 mt-10" style="max-width:500px; width:100%; border-radius: 2rem;">
             <div class="card-header text-center bg-white border-0" style="border-top-left-radius:2rem; border-top-right-radius:2rem;">
             <div class="mb-3"><i class="fa-solid fa-house-chimney fa-2x text-indigo-500"></i></div>
             <h3 class="fw-bolder mb-1" style="color:#4f46e5;">Create your HavenSeek account</h3>

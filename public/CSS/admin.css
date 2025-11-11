@@ -197,15 +197,15 @@ body {
 }
 
 .action-btn.assign-btn {
-    background: rgba(79, 70, 229, 0.1);
+    background: transparent;
     color: var(--primary-color);
 }
 
-.action-btn.assign-btn:hover {
+/* .action-btn.assign-btn:hover {
     background: var(--primary-color);
     color: white;
     transform: translateY(-2px);
-}
+} */
 
 .action-btn.edit-btn {
     color: var(--text-muted);
