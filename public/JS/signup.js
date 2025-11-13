@@ -366,7 +366,7 @@ async function showOTPVerification() {
   try {
     showAlert("Sending verification code...", "info");
 
-    const response = await fetch(`${BASE_URL}/user/send-otp`, {
+    const response = await fetch(`/user/send-otp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -700,7 +700,7 @@ async function resendOTP() {
   try {
     showAlert("Sending new verification code...", "info");
 
-    const response = await fetch(`${BASE_URL}/user/send-otp`, {
+    const response = await fetch(`/user/send-otp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
