@@ -22,7 +22,7 @@
 - Real-time filtering without page reloads.
 
 ### 💬 Real-Time Chat
-- Chat system for buyers, sellers, dealers, and agents (Socket.io or custom).
+- Chat system for buyers, sellers, dealers, and agents.
 - Role-restricted messaging logic.
 
 ### 📅 Booking & Visit Scheduling
@@ -34,24 +34,48 @@
 
 ---
 
-## 💻 Tech Stack
+## 🤖 AI Integration (In Progress)
 
-| Technology      | Purpose                          |
-|------------------|----------------------------------|
-| React.js         | Frontend UI                     |
-| Tailwind CSS / Bootstrap | Responsive styling            |
-| Node.js + Express.js | Backend RESTful APIs           |
-| MongoDB Atlas    | Cloud-based NoSQL database      |
-| Cloudinary       | Image/document storage          |
-| JWT              | Authentication                  |
-| Socket.io        | Real-time communication (optional) |
-| PDFKit / jsPDF   | PDF generation                  |
+- Integrated **Google Gemini AI** as an AI Assistant.
+- AI converts user natural language into structured JSON data.
+- Strict rules are applied to extract only required fields:
+  - `type`, `size`, `purpose`, `price`, `area`, `city`, `state`
+- Extracted JSON is used to dynamically build MongoDB queries.
+- Properties are fetched based on user requirements.
+- AI summarizes fetched listings and sends a user-friendly response.
+- If no matching listing is found, a fallback response is returned.
+- Greeting messages (e.g., "hello") do not trigger database queries.
+
+**Example Query:**
+> Show me a flat in Lucknow below 50 lakh
+
+**Flow:**
+1. User message → AI
+2. AI extracts structured JSON
+3. Backend runs DB query
+4. Listings are fetched
+5. AI generates response
 
 ---
 
-# Developer
+## 💻 Tech Stack
 
-**Sahil Jayant**
-📧 www.jayantsahil2054@gmail.com <br>
+| Technology | Purpose |
+|----------|--------|
+| HTML, CSS, JavaScript | Frontend UI (MVC) |
+| Tailwind CSS / Bootstrap | Responsive styling |
+| Node.js + Express.js | Backend APIs |
+| MongoDB Atlas | Database |
+| Google Gemini AI | AI Assistant |
+| Cloudinary | Media storage |
+| JWT | Authentication |
+| Socket.io | Real-time chat (optional) |
+| PDFKit / jsPDF | PDF generation |
+
+---
+
+## 👨‍💻 Developer
+
+**Sahil Jayant**  
+📧 www.jayantsahil2054@gmail.com  
 🔗 LinkedIn: www.linkedin.com/in/sahil-jayant
-
