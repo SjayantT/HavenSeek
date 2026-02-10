@@ -8,9 +8,9 @@ module.exports.signupForm= (req,res,next)=>{
 }
 
 module.exports.signup= async(req,res)=>{
-    const {name, username, email, mobile,aadhar,role, password}= req.body;
+    const {name, username, email, mobile,aadhar,role, location, password}= req.body;
     const createdAt = new Date().toISOString();
-    let newUser= new User({name, username, email, mobile, aadhar,role, createdAt});
+    let newUser= new User({name, username, email, mobile, aadhar, role, location, createdAt});
     const savedUser= await User.register(newUser, password);
     req.login(newUser, (err)=>{
         if(err){

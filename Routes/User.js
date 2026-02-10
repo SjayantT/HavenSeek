@@ -36,8 +36,6 @@ router.post("/:id/update/user-password", UserController.updatePassword);
 
 
 
-
-
 // // Configure Nodemailer (Gmail example)
 // const transporter = nodemailer.createTransport({
 //     service: 'gmail',

@@ -34,6 +34,10 @@ router.post("/listings/:id/update-status", isAuthenticated, ListingContoller.upd
 
 router.get("/listings/:id/delete", isAuthenticated, ListingContoller.deleteListing);
 
+router.get("/listings/:id/edit", isAuthenticated, ListingContoller.updateListingForm);
+
+router.post("/listings/:id/edit", isAuthenticated, upload.single("image"), ListingContoller.updateListing);
+
 router.get("/listings/filter/:id", isAuthenticated, ListingContoller.filterByCategory);
 
 router.get("/terms&condition", ListingContoller.termsCondition);

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/SjayantT/HavenSeek#readme",
   "dependencies": {
+    "@google/genai": "^1.38.0",
     "bcrypt": "^6.0.0",
     "cloudinary": "^1.41.3",
     "connect-flash": "^0.1.1",

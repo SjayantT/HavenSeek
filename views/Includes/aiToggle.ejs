@@ -1,0 +1,46 @@
+<body>
+    <!-- AI Bot Button -->
+    <div class="fixed bottom-20 right-10">
+        <div id="Ai-bot" class="Ai-bot bg-green-600 h-20 w-20">
+            <img class="bot-img h-16 w-16" src="/Assets/Chat-bot.jpg" alt="AI Support Bot" />
+        </div>
+    </div>
+
+    <!-- Chat Box -->
+    <div id="chat-box" class="chat-box bg-slate-200 fixed top-32 right-2 h-[72%] w-[23%]">
+        <!-- Chat Header -->
+        <div class="chat-title">
+            <h1 class="text-bold text-indigo-700">HavenSeek AI Support 🤖</h1>
+            <button id="close-btn" aria-label="Close chat">
+                <i class="fa-solid fa-xmark text-red-700"></i>
+            </button>
+        </div>
+
+        <!-- Messages Container -->
+        <div class="chat-msg">
+            <ul id="msg-list">
+                <li class="welcome-msg">Welcome! How can I help you today?</li>
+            </ul>
+            <!-- Typing Indicator -->
+            <div class="typing-indicator" id="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Input Section -->
+        <div class="input w-[90%]">
+            <textarea
+                name="msg"
+                id="user-input"
+                class="message bg-white-700 w-[90%]"
+                placeholder="Type your message..."
+                rows="1"
+            ></textarea>
+            <button id="send-btn" class="send-btn bg-green-600" aria-label="Send message">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</body>

@@ -110,6 +110,35 @@ module.exports.deleteListing = async (req, res) => {
   return res.redirect(`/user/${req.user._id}/profile`);
 };
 
+module.exports.updateListingForm = async (req,res)=>{
+  const id = req.params.id;
+  try{
+    const listing = await Listing.findById(id);
+    res.render("./Listings/editListingForm.ejs", {listing});
+  } catch (e){
+    console.log("Some error occured in finding listing. ", e)
+    req.flash("error", "Error in finding the property.");
+    return res.redirect(`/user/${req.user._id}/profile`);
+  }
+}
+
+module.exports.updateListing = async (req,res)=>{
+  const id = req.params.id;
+  try{
+    const listing = await Listing.findByIdAndUpdate(id, req.body,);
+    if(req.file){
+      listing.image.url = req.file.path;
+      listing.image.filename = req.file.filename;
+      await listing.save();
+    }
+    req.flash("success", "Property was updated successfully.");
+  }catch (e){
+    console.log("Somme error occured in updating listing.", e);
+    req.flash("error", "Error in updating the property.");
+  }
+   res.redirect(`/user/${req.user._id}/profile`);
+}
+
 module.exports.updateStatus = async (req, res, next) => {
   const id = req.params.id;
   const { status } = req.body;

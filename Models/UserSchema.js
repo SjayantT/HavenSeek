@@ -32,6 +32,10 @@ const UserSchema= new Schema({
         type:Number,
         required:true
     },
+    location:{
+        type:String, 
+        required: true
+    },
     createdAt:{
         type:String,
         required:true
